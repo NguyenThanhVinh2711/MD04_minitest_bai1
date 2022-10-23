@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  </head>
+<body>
+<h1>List</h1>
+<a href="/create">Create Expense</a>
+<br>
+<div>
+  <table id="ex">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Spending List</th>
+      <th>Image</th>
+      <th colspan="2">Action</th>
+    </tr>
+    <tr th:each="expense:${list}">
+      <td th:text="${expense.id}"></td>
+      <td th:text="${expense.name}"></td>
+      <td th:text="${expense.price}"></td>
+      <td th:text="${expense.description}"></td>
+      <td th:text="${expense.spendingList}"></td>
+      <td><img width="100" height="100" th:src="@{'/image/' + ${expense.image}}" alt=""></td>
+      <td><a th:href="@{edit/{id}(id=${expense.id})}">Edit</a></td>
+      <td><a th:href="@{delete/{id}(id=${expense.id})}">Delete</a></td>
+    </tr>
+  </table>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
